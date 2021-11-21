@@ -1,0 +1,13 @@
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\bin\Release\p2p.exe.config
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\bin\Release\p2p.exe
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\bin\Release\p2p.pdb
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\bin\Release\AForge.dll
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\obj\Release\p2pconn.csprojAssemblyReference.cache
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\obj\Release\p2pconn.Form1.resources
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\obj\Release\p2pconn.pDesktop.resources
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\obj\Release\p2p.Properties.Resources.resources
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\obj\Release\p2pconn.csproj.GenerateResource.cache
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\obj\Release\p2pconn.csproj.CoreCompileInputs.cache
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\obj\Release\p2pconn.csproj.CopyComplete
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\obj\Release\p2p.exe
+C:\Users\Miroslav Pejic\Desktop\miro-open-source\peer2peer\p2p\p2pconn\obj\Release\p2p.pdb
