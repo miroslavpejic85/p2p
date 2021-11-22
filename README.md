@@ -1,4 +1,4 @@
-# Remote Desktop P2P
+# ![p2p-logo](ico/p2p.ico) Remote Desktop P2P
 
 `Remote Desktop` solution `P2P` based
 
@@ -14,7 +14,7 @@
 
 - So the 2 peers have now the 2 enpoint to connect to, so press on both `Connect`.
 
-- The 2 peers now are able to `sent messages` or Take the `Remote Desktop Control` between them.
+- The 2 peers now are able to `sent messages` or take the `Remote Desktop Control` between them.
 
 ![p2p-desktop](img/p2p_desktop.png)
 
@@ -26,6 +26,8 @@ and thanks to `rendezvous` connection, it should be able to `bypass all firewall
 ![p2p-p2p](img/p2p_schema.png)
 
 </br >
+
+## Contributing
 
 Contributions are welcome and greatly appreciated!
 
