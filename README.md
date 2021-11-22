@@ -20,7 +20,8 @@
 
 </br >
 
-Being a `P2P`, it should be able to `bypass all firewall rules` etc, like a small concepts of `TeamViewer` at 0 cost!
+It's use [UDT protocol](https://en.wikipedia.org/wiki/UDP-based_Data_Transfer_Protocol)
+and thanks to `rendezvous` connection, it should be able to `bypass all firewall rules` etc, like a small concepts of `TeamViewer` at 0 cost!
 
 ![p2p-p2p](img/p2p_schema.png)
 
