@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("p2p")]
-[assembly: AssemblyDescription("peer to peer remote desktop")]
+[assembly: AssemblyDescription("Remote Desktop p2p")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("pocketsolution")]
-[assembly: AssemblyProduct("p2p")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyProduct("https://github.com/miroslavpejic85/p2p")]
+[assembly: AssemblyCopyright("Copyright (c) 2021 Miroslav Pejic")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
