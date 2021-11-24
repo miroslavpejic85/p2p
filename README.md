@@ -16,7 +16,7 @@
 
 - The 2 peers now are able to `sent messages` or take the `Remote Desktop Control` between them.
 
-![p2p-desktop](img/p2p_desktop.png)
+![p2p-desktop](img/p2p_remote_desktop.png)
 
 </br >
 
