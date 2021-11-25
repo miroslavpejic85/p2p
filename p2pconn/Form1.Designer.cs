@@ -401,11 +401,10 @@
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Location = new System.Drawing.Point(29, 146);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(295, 121);
+            this.richTextBox1.Size = new System.Drawing.Size(295, 92);
             this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "Remote Desktop P2P Open Source project!\n\nDeveloper: Miroslav Pejic\n\nGitHub: https" +
-    "://github.com/miroslavpejic85\n\nLinkedin: https://www.linkedin.com/in/miroslav-pe" +
-    "jic-976a07101/";
+            this.richTextBox1.Text = "Remote Desktop P2P based.\n\nGitHub: https://github.com/miroslavpejic85/p2p\n\nLinked" +
+    "in: https://www.linkedin.com/in/miroslav-pejic-976a07101/";
             this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox1_LinkClicked);
             // 
             // pictureBox1
