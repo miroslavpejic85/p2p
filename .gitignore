@@ -1,5 +1,5 @@
 .DS_Store
 .git
 .vs
-#p2pconn/bin/
-p2pconn/obj/
+#bin
+obj

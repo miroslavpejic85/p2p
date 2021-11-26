@@ -32,8 +32,8 @@ namespace p2pconn
         Thread thread;
 
         Socket socket = new Socket(
-              AddressFamily.InterNetwork,
-              SocketType.Dgram, ProtocolType.Udp);
+                AddressFamily.InterNetwork,
+                SocketType.Dgram, ProtocolType.Udp);
 
         UdtSocket connection;
 
@@ -135,7 +135,7 @@ namespace p2pconn
                 r_chat.Invoke((MethodInvoker)(() => r_chat.Text = "Connection Error: " + e2.Message));
             }
         }
- 
+
         static void ParseRemoteAddr(string addr, out string remoteIp, out int port)
         {
             string[] split = addr.Split(':');
@@ -193,7 +193,7 @@ namespace p2pconn
 
                     client = new UdtSocket(socket.AddressFamily, socket.SocketType);
                     client.Bind(socket);
- 
+
                     retry++;
                     label4.Invoke((MethodInvoker)(() => label4.ForeColor = Color.Black));
                     label4.Invoke((MethodInvoker)(() => label4.Text = retry + " Trying to connect to " + remoteAddr + ":" + remotePort));
@@ -441,7 +441,7 @@ namespace p2pconn
         {
             try
             {
-                Process.Start("http://www.pocketsolution.net/");
+                Process.Start("https://www.pocketsolution.net/");
             }
             catch
             {
