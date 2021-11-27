@@ -4,7 +4,7 @@
 
 ## How it works
 
-- Open [p2p.exe](p2pconn/bin/Release/p2p.exe) as admin in 2 different PC's
+- Compile and Open `p2p.exe` as admin in 2 different PC's
 
 ![p2p-exe](img/p2p_exe.png)
 

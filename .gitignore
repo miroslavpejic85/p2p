@@ -1,5 +1,5 @@
 .DS_Store
 .git
 .vs
-#bin
+bin
 obj
