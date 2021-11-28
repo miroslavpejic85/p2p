@@ -51,9 +51,9 @@ namespace p2pconn
     
             p2pScreen.Width = RemoteDesktop.RScreenWidth;
             p2pScreen.Height = RemoteDesktop.RScreenHeight;
-            p2pScreen.Image = new Bitmap(RemoteDesktop.RScreenWidth, RemoteDesktop.RScreenHeight);
+            p2pScreen.Image = new Bitmap(RemoteDesktop.RScreenWidth, RemoteDesktop.RScreenHeight); //err
 
-            this.Text = "p2pDesktop: " + RemoteDesktop.RScreenWidth + " x " + RemoteDesktop.RScreenHeight;
+            this.Text = "p2p_Desktop: " + RemoteDesktop.RScreenWidth + " x " + RemoteDesktop.RScreenHeight;
             RemoteDesktop.DesktopRunning = true;
             GlobalVariables.Root.EnableStreach(true);
             GlobalVariables.Root.EnableDSpeed(true);

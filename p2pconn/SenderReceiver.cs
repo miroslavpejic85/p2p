@@ -22,7 +22,6 @@ namespace p2pcopy
         private static int FPS = 0;
         private static Stopwatch sfps = Stopwatch.StartNew();
         private static Stopwatch RenderSW = Stopwatch.StartNew();
-        static int counterror = 0;
         [DllImport("user32.dll")]
         private static extern uint MapVirtualKey(uint uCode, uint uMapType);
         #endregion
@@ -38,8 +37,8 @@ namespace p2pcopy
             Rectangle rect = Screen.AllScreens[RemoteDesktop.MonitorIndex].WorkingArea;
 
             SendMessage("peer|" + GlobalVariables.Root.myname + "|" +
-                                                            Screen.PrimaryScreen.Bounds.Width + "|" +
-                                                            Screen.PrimaryScreen.Bounds.Height);
+                                    Screen.PrimaryScreen.Bounds.Width + "|" +
+                                    Screen.PrimaryScreen.Bounds.Height);
 
             while (isConnected && netStream.CanRead) 
             {
@@ -93,7 +92,7 @@ namespace p2pcopy
                                             Bitmap decoded = RemoteDesktop.UnsafeMotionCodec.DecodeData(new MemoryStream(QuickLZ.Decompress(tempBytes)));
                                             if (RenderSW.ElapsedMilliseconds >= (1000 / 20))
                                             {
-                                               GlobalVariables.p2pDesktop.DecodeImage1((Bitmap)decoded.Clone());
+                                                GlobalVariables.p2pDesktop.DecodeImage1((Bitmap)decoded.Clone());
                                                 RenderSW = Stopwatch.StartNew();
                                             }
                                             FPS++;
@@ -110,8 +109,7 @@ namespace p2pcopy
                                 }
                                 catch (Exception ex)
                                 {
-                                    counterror++;
-                                    GlobalVariables.Root.Writetxtchatrom("Red", "Receive Streaming [ " + counterror + " ]" + ex.ToString());
+                                    GlobalVariables.Root.Writetxtchatrom("Red", "Receive Streaming: " + ex.ToString());
                                     SendMessage("endp2pDesktop|");
                                     GC.Collect();
                                 }
@@ -217,7 +215,7 @@ namespace p2pcopy
             }
         }
     #endregion
-   
+
         #region "send data =====>"
     static internal void SendMessage(string message)
         {

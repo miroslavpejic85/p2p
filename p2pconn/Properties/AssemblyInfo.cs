@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("p2p")]
-[assembly: AssemblyDescription("https://github.com/miroslavpejic85/p2p")]
+[assembly: AssemblyTitle("P2P")]
+[assembly: AssemblyDescription("Remote Desktop & Chat P2P based")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("pocketsolution")]
-[assembly: AssemblyProduct("Remote Desktop P2P based")]
-[assembly: AssemblyCopyright("Copyright (c) 2021 Miroslav Pejic")]
+[assembly: AssemblyCompany("PocketSolution")]
+[assembly: AssemblyProduct("P2P")]
+[assembly: AssemblyCopyright("Copyright © 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]

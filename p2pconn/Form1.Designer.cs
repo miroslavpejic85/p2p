@@ -310,7 +310,7 @@
             this.checkBox1.Enabled = false;
             this.checkBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.checkBox1.Location = new System.Drawing.Point(29, 21);
+            this.checkBox1.Location = new System.Drawing.Point(29, 18);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(133, 17);
             this.checkBox1.TabIndex = 7;
@@ -331,7 +331,7 @@
             "400",
             "800",
             "1000"});
-            this.dspeed.Location = new System.Drawing.Point(70, 44);
+            this.dspeed.Location = new System.Drawing.Point(70, 48);
             this.dspeed.Name = "dspeed";
             this.dspeed.Size = new System.Drawing.Size(58, 21);
             this.dspeed.TabIndex = 9;
@@ -355,11 +355,11 @@
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label15.Location = new System.Drawing.Point(139, 47);
+            this.label15.Location = new System.Drawing.Point(134, 52);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(19, 13);
             this.label15.TabIndex = 11;
-            this.label15.Text = "ms";
+            this.label15.Text = "MS";
             // 
             // lblkb
             // 
@@ -378,11 +378,11 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label14.Location = new System.Drawing.Point(26, 47);
+            this.label14.Location = new System.Drawing.Point(26, 52);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(43, 13);
             this.label14.TabIndex = 10;
-            this.label14.Text = "Speed:";
+            this.label14.Text = "DELAY:";
             // 
             // tabPage3
             // 
@@ -410,7 +410,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::p2p.Properties.Resources.p2p1;
-            this.pictureBox1.Location = new System.Drawing.Point(29, 32);
+            this.pictureBox1.Location = new System.Drawing.Point(29, 24);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(96, 96);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
