@@ -89,7 +89,7 @@ namespace p2pcopy
                                         {
                                             // GlobalVariables.Root.Writetxtchatrom("Green", "compressed: " + tempBytes.Length);
                                             GlobalVariables.Root.WriteKB("FSIZE: " + Functions.FormatFileSize(tempBytes.Length));
-                                            Bitmap decoded = RemoteDesktop.UnsafeMotionCodec.DecodeData(new MemoryStream(QuickLZ.Decompress(tempBytes)));
+                                            Bitmap decoded = RemoteDesktop.UnsafeMotionCodec.DecodeData(new MemoryStream(QuickLZ.decompress(tempBytes)));
                                             if (RenderSW.ElapsedMilliseconds >= (1000 / 20))
                                             {
                                                 GlobalVariables.p2pDesktop.DecodeImage1((Bitmap)decoded.Clone());

@@ -1,8 +1,10 @@
 ﻿using System;
 #pragma warning disable 0675
-public class QuickLZ
+
+// Version: 1.5.0 final
+static class QuickLZ
 {
-    #region "bytes compression"
+#region "bytes compress - decompress"
     public const int QLZ_VERSION_MAJOR = 1;
     public const int QLZ_VERSION_MINOR = 5;
     public const int QLZ_VERSION_REVISION = 0;
@@ -21,70 +23,64 @@ public class QuickLZ
     private const int CWORD_LEN = 4;
     private const int DEFAULT_HEADERLEN = 9;
     private const int QLZ_POINTERS_1 = 1;
-    private const int QLZ_POINTERS_3 = 16; 
-    
-    private static int HeaderLength(byte[] source)
+    private const int QLZ_POINTERS_3 = 16;
+
+    private static int headerLen(byte[] source)
     {
         return ((source[0] & 2) == 2) ? 9 : 3;
     }
 
-    public static int SizeDecompressed(byte[] source)
+    public static int sizeDecompressed(byte[] source)
     {
-        if (HeaderLength(source) == 9)
+        if (headerLen(source) == 9)
             return source[5] | (source[6] << 8) | (source[7] << 16) | (source[8] << 24);
         else
             return source[2];
     }
 
-    public static int SizeCompressed(byte[] source)
+    public static int sizeCompressed(byte[] source)
     {
-        if (HeaderLength(source) == 9)
+        if (headerLen(source) == 9)
             return source[1] | (source[2] << 8) | (source[3] << 16) | (source[4] << 24);
         else
             return source[1];
     }
 
-    private static void WriteHeader(byte[] dst, int level, bool compressible, int sizeCompressed,
-        int sizeDecompressed)
+    private static void write_header(byte[] dst, int level, bool compressible, int size_compressed, int size_decompressed)
     {
         dst[0] = (byte)(2 | (compressible ? 1 : 0));
         dst[0] |= (byte)(level << 2);
         dst[0] |= (1 << 6);
         dst[0] |= (0 << 4);
-        FastWrite(dst, 1, sizeDecompressed, 4);
-        FastWrite(dst, 5, sizeCompressed, 4);
+        fast_write(dst, 1, size_decompressed, 4);
+        fast_write(dst, 5, size_compressed, 4);
     }
 
-    public static byte[] Compress(byte[] source, int level = 3)
+    public static byte[] compress(byte[] source, int level)
     {
-        if (source.Length == 0)
-            return new byte[0];
-
-        int[,] hashtable;
-
-        switch (level)
-        {
-            case 1:
-                hashtable = new int[HASH_VALUES, QLZ_POINTERS_1];
-                break;
-            case 3:
-                hashtable = new int[HASH_VALUES, QLZ_POINTERS_3];
-                break;
-            default:
-                throw new ArgumentException("C# version only supports level 1 and 3");
-        }
-
         int src = 0;
         int dst = DEFAULT_HEADERLEN + CWORD_LEN;
         uint cword_val = 0x80000000;
         int cword_ptr = DEFAULT_HEADERLEN;
         byte[] destination = new byte[source.Length + 400];
+        int[,] hashtable;
         int[] cachetable = new int[HASH_VALUES];
         byte[] hash_counter = new byte[HASH_VALUES];
         byte[] d2;
         int fetch = 0;
         int last_matchstart = (source.Length - UNCONDITIONAL_MATCHLEN - UNCOMPRESSED_END - 1);
         int lits = 0;
+
+        if (level != 1 && level != 3)
+            throw new ArgumentException("C# version only supports level 1 and 3");
+
+        if (level == 1)
+            hashtable = new int[HASH_VALUES, QLZ_POINTERS_1];
+        else
+            hashtable = new int[HASH_VALUES, QLZ_POINTERS_3];
+
+        if (source.Length == 0)
+            return new byte[0];
 
         if (src <= last_matchstart)
             fetch = source[src] | (source[src + 1] << 8) | (source[src + 2] << 16);
@@ -96,12 +92,12 @@ public class QuickLZ
                 if (src > source.Length >> 1 && dst > src - (src >> 5))
                 {
                     d2 = new byte[source.Length + DEFAULT_HEADERLEN];
-                    WriteHeader(d2, level, false, source.Length, source.Length + DEFAULT_HEADERLEN);
-                    Array.Copy(source, 0, d2, DEFAULT_HEADERLEN, source.Length);
+                    write_header(d2, level, false, source.Length, source.Length + DEFAULT_HEADERLEN);
+                    System.Array.Copy(source, 0, d2, DEFAULT_HEADERLEN, source.Length);
                     return d2;
                 }
 
-                FastWrite(destination, cword_ptr, (int)((cword_val >> 1) | 0x80000000), 4);
+                fast_write(destination, cword_ptr, (int)((cword_val >> 1) | 0x80000000), 4);
                 cword_ptr = dst;
                 dst += CWORD_LEN;
                 cword_val = 0x80000000;
@@ -115,11 +111,7 @@ public class QuickLZ
                 cachetable[hash] = fetch;
                 hashtable[hash, 0] = src;
 
-                if (cache == 0 && hash_counter[hash] != 0 &&
-                    (src - o > MINOFFSET ||
-                     (src == o + 1 && lits >= 3 && src > 3 && source[src] == source[src - 3] &&
-                      source[src] == source[src - 2] && source[src] == source[src - 1] &&
-                      source[src] == source[src + 1] && source[src] == source[src + 2])))
+                if (cache == 0 && hash_counter[hash] != 0 && (src - o > MINOFFSET || (src == o + 1 && lits >= 3 && src > 3 && source[src] == source[src - 3] && source[src] == source[src - 2] && source[src] == source[src - 1] && source[src] == source[src + 1] && source[src] == source[src + 2])))
                 {
                     cword_val = ((cword_val >> 1) | 0x80000000);
                     if (source[o + 3] != source[src + 3])
@@ -133,9 +125,7 @@ public class QuickLZ
                     else
                     {
                         int old_src = src;
-                        int remaining = ((source.Length - UNCOMPRESSED_END - src + 1 - 1) > 255
-                            ? 255
-                            : (source.Length - UNCOMPRESSED_END - src + 1 - 1));
+                        int remaining = ((source.Length - UNCOMPRESSED_END - src + 1 - 1) > 255 ? 255 : (source.Length - UNCOMPRESSED_END - src + 1 - 1));
 
                         src += 4;
                         if (source[o + src - old_src] == source[src])
@@ -161,7 +151,7 @@ public class QuickLZ
                         }
                         else
                         {
-                            FastWrite(destination, dst, hash | (matchlen << 16), 3);
+                            fast_write(destination, dst, hash | (matchlen << 16), 3);
                             dst += 3;
                         }
                     }
@@ -187,9 +177,7 @@ public class QuickLZ
                 int o, offset2;
                 int matchlen, k, m, best_k = 0;
                 byte c;
-                int remaining = ((source.Length - UNCOMPRESSED_END - src + 1 - 1) > 255
-                    ? 255
-                    : (source.Length - UNCOMPRESSED_END - src + 1 - 1));
+                int remaining = ((source.Length - UNCOMPRESSED_END - src + 1 - 1) > 255 ? 255 : (source.Length - UNCOMPRESSED_END - src + 1 - 1));
                 int hash = ((fetch >> 12) ^ fetch) & (HASH_VALUES - 1);
 
                 c = hash_counter[hash];
@@ -198,8 +186,7 @@ public class QuickLZ
                 for (k = 0; k < QLZ_POINTERS_3 && c > k; k++)
                 {
                     o = hashtable[hash, k];
-                    if ((byte)fetch == source[o] && (byte)(fetch >> 8) == source[o + 1] &&
-                        (byte)(fetch >> 16) == source[o + 2] && o < src - MINOFFSET)
+                    if ((byte)fetch == source[o] && (byte)(fetch >> 8) == source[o + 1] && (byte)(fetch >> 16) == source[o + 2] && o < src - MINOFFSET)
                     {
                         m = 3;
                         while (source[o + m] == source[src + m] && m < remaining)
@@ -234,27 +221,27 @@ public class QuickLZ
 
                     if (matchlen == 3 && offset <= 63)
                     {
-                        FastWrite(destination, dst, offset << 2, 1);
+                        fast_write(destination, dst, offset << 2, 1);
                         dst++;
                     }
                     else if (matchlen == 3 && offset <= 16383)
                     {
-                        FastWrite(destination, dst, (offset << 2) | 1, 2);
+                        fast_write(destination, dst, (offset << 2) | 1, 2);
                         dst += 2;
                     }
                     else if (matchlen <= 18 && offset <= 1023)
                     {
-                        FastWrite(destination, dst, ((matchlen - 3) << 2) | (offset << 6) | 2, 2);
+                        fast_write(destination, dst, ((matchlen - 3) << 2) | (offset << 6) | 2, 2);
                         dst += 2;
                     }
                     else if (matchlen <= 33)
                     {
-                        FastWrite(destination, dst, ((matchlen - 2) << 2) | (offset << 7) | 3, 3);
+                        fast_write(destination, dst, ((matchlen - 2) << 2) | (offset << 7) | 3, 3);
                         dst += 3;
                     }
                     else
                     {
-                        FastWrite(destination, dst, ((matchlen - 3) << 7) | (offset << 15) | 3, 4);
+                        fast_write(destination, dst, ((matchlen - 3) << 7) | (offset << 15) | 3, 4);
                         dst += 4;
                     }
                     lits = 0;
@@ -272,7 +259,7 @@ public class QuickLZ
         {
             if ((cword_val & 1) == 1)
             {
-                FastWrite(destination, cword_ptr, (int)((cword_val >> 1) | 0x80000000), 4);
+                fast_write(destination, cword_ptr, (int)((cword_val >> 1) | 0x80000000), 4);
                 cword_ptr = dst;
                 dst += CWORD_LEN;
                 cword_val = 0x80000000;
@@ -287,32 +274,25 @@ public class QuickLZ
         {
             cword_val = (cword_val >> 1);
         }
-        FastWrite(destination, cword_ptr, (int)((cword_val >> 1) | 0x80000000), CWORD_LEN);
-        WriteHeader(destination, level, true, source.Length, dst);
+        fast_write(destination, cword_ptr, (int)((cword_val >> 1) | 0x80000000), CWORD_LEN);
+        write_header(destination, level, true, source.Length, dst);
         d2 = new byte[dst];
-        Array.Copy(destination, d2, dst);
+        System.Array.Copy(destination, d2, dst);
         return d2;
     }
 
 
-    private static void FastWrite(byte[] a, int i, int value, int numbytes)
+    private static void fast_write(byte[] a, int i, int value, int numbytes)
     {
         for (int j = 0; j < numbytes; j++)
             a[i + j] = (byte)(value >> (j * 8));
     }
 
-    public static byte[] Decompress(byte[] source)
+    public static byte[] decompress(byte[] source)
     {
-        if (source.Length == 0)
-            return new byte[0];
-
-        int level = (source[0] >> 2) & 0x3;
-
-        if (level != 1 && level != 3)
-            throw new ArgumentException("C# version only supports level 1 and 3");
-
-        int size = SizeDecompressed(source);
-        int src = HeaderLength(source);
+        int level;
+        int size = sizeDecompressed(source);
+        int src = headerLen(source);
         int dst = 0;
         uint cword_val = 1;
         byte[] destination = new byte[size];
@@ -323,30 +303,30 @@ public class QuickLZ
         int hash;
         uint fetch = 0;
 
+        level = (source[0] >> 2) & 0x3;
+
+        if (level != 1 && level != 3)
+            throw new ArgumentException("C# version only supports level 1 and 3");
+
         if ((source[0] & 1) != 1)
         {
             byte[] d2 = new byte[size];
-            Array.Copy(source, HeaderLength(source), d2, 0, size);
+            System.Array.Copy(source, headerLen(source), d2, 0, size);
             return d2;
         }
 
-        for (;;)
+        for (; ; )
         {
             if (cword_val == 1)
             {
-                cword_val =
-                    (uint)
-                        (source[src] | (source[src + 1] << 8) | (source[src + 2] << 16) | (source[src + 3] << 24));
+                cword_val = (uint)(source[src] | (source[src + 1] << 8) | (source[src + 2] << 16) | (source[src + 3] << 24));
                 src += 4;
                 if (dst <= last_matchstart)
                 {
                     if (level == 1)
                         fetch = (uint)(source[src] | (source[src + 1] << 8) | (source[src + 2] << 16));
                     else
-                        fetch =
-                            (uint)
-                                (source[src] | (source[src + 1] << 8) | (source[src + 2] << 16) |
-                                 (source[src + 3] << 24));
+                        fetch = (uint)(source[src] | (source[src + 1] << 8) | (source[src + 2] << 16) | (source[src + 3] << 24));
                 }
             }
 
@@ -422,10 +402,7 @@ public class QuickLZ
 
                 if (level == 1)
                 {
-                    fetch =
-                        (uint)
-                            (destination[last_hashed + 1] | (destination[last_hashed + 2] << 8) |
-                             (destination[last_hashed + 3] << 16));
+                    fetch = (uint)(destination[last_hashed + 1] | (destination[last_hashed + 2] << 8) | (destination[last_hashed + 3] << 16));
                     while (last_hashed < dst - matchlen)
                     {
                         last_hashed++;
@@ -438,10 +415,7 @@ public class QuickLZ
                 }
                 else
                 {
-                    fetch =
-                        (uint)
-                            (source[src] | (source[src + 1] << 8) | (source[src + 2] << 16) |
-                             (source[src + 3] << 24));
+                    fetch = (uint)(source[src] | (source[src + 1] << 8) | (source[src + 2] << 16) | (source[src + 3] << 24));
                 }
                 last_hashed = dst - 1;
             }
@@ -459,8 +433,7 @@ public class QuickLZ
                         while (last_hashed < dst - 3)
                         {
                             last_hashed++;
-                            int fetch2 = destination[last_hashed] | (destination[last_hashed + 1] << 8) |
-                                         (destination[last_hashed + 2] << 16);
+                            int fetch2 = destination[last_hashed] | (destination[last_hashed + 1] << 8) | (destination[last_hashed + 2] << 16);
                             hash = ((fetch2 >> 12) ^ fetch2) & (HASH_VALUES - 1);
                             hashtable[hash] = last_hashed;
                             hash_counter[hash] = 1;
@@ -494,4 +467,5 @@ public class QuickLZ
     }
     #endregion
 }
+
 

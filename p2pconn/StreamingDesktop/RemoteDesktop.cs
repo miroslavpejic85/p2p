@@ -117,7 +117,7 @@ namespace p2pconn
                         if (MotionStream.Length > 4)
                         {
                             // GlobalVariables.Root.Writetxtchatrom("Green", "Before no compressed: " + MotionStream.ToArray().Length);
-                            byte[] tempBytes = QuickLZ.Compress(MotionStream.ToArray());  // Default 3 | Level 1 gives the fastest compression speed while level 3 gives the fastest decompression speed.
+                            byte[] tempBytes = QuickLZ.compress(MotionStream.ToArray(), 3);  // Default 3 | Level 1 gives the fastest compression speed while level 3 gives the fastest decompression speed.
                             // GlobalVariables.Root.Writetxtchatrom("Green", "After compressed: " + tempBytes.Length);
                             SenderReceiver.SendMessage("b|" + Tipo + "|" + tempBytes.Length);
                             SenderReceiver.client.Send(tempBytes, 0, tempBytes.Length);
