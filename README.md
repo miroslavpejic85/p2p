@@ -12,7 +12,7 @@
 
 ![p2p-connection](img/p2p-connection.png)
 
-- So the 2 peers have now the 2 enpoint to connect to, so press on both `Connect`.
+- So the 2 peers have now the 2 endpoint to connect to, so press on both `Connect`.
 
 - The 2 peers now are able to `sent messages` or take the `Remote Desktop Control` between them.
 
