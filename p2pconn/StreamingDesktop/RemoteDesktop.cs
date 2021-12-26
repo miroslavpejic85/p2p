@@ -107,13 +107,15 @@ namespace p2pconn
                     GetCursorState();
                     bmpData = ScreenCap.LockBits(new System.Drawing.Rectangle(0, 0, ScreenCap.Width, ScreenCap.Height),
                     ImageLockMode.ReadWrite, ScreenCap.PixelFormat);
-                    using (MemoryStream MotionStream = new MemoryStream(10000000)) // 10000000
+                    // 10000000 allocate already enough memory to make it fast
+                    using (MemoryStream MotionStream = new MemoryStream(100000000))
                     {
                         if (UnsafeMotionCodec == null) throw new Exception("StreamCodec can not be null.");
                         UnsafeMotionCodec.CodeImage(bmpData.Scan0,
                         new Rectangle(0, 0, ScreenCap.Width, ScreenCap.Height),
                         new Size(ScreenCap.Width, ScreenCap.Height),
                         ScreenCap.PixelFormat, MotionStream);
+                        // 4 bytes = inactivity no motion detection
                         if (MotionStream.Length > 4)
                         {
                             // GlobalVariables.Root.Writetxtchatrom("Green", "Before no compressed: " + MotionStream.ToArray().Length);
@@ -122,20 +124,20 @@ namespace p2pconn
                             SenderReceiver.SendMessage("b|" + Tipo + "|" + tempBytes.Length);
                             SenderReceiver.client.Send(tempBytes, 0, tempBytes.Length);
                             Array.Clear(tempBytes, 0, tempBytes.Length);
-                    }
+                        }
                     }
                     ScreenCap.UnlockBits(bmpData);
                     ScreenCap.Dispose();
                     GC.Collect();
                     // GlobalVariables.Root.Writetxtchatrom("Green", "time: " + time.ElapsedMilliseconds + " ms");
                     // time.Stop();
-            }
+                }
                 catch (Exception ex)
                 {
                     GlobalVariables.Root.Writetxtchatrom("Red", "Stop Sharing Desktop: " + ex.Message);
                     StopDesktop();
                     GC.Collect();
-            }
+                }
         }
 
     private static  Bitmap  ScreenCap

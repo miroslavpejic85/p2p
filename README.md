@@ -4,7 +4,7 @@
 
 ## How it works
 
-- Compile and Open `p2p.exe` as admin in 2 different PC's
+- Compile and Open `p2p.exe` as admin in 2 different PC's.
 
 ![p2p-exe](img/p2p-exe.png)
 
@@ -12,7 +12,7 @@
 
 ![p2p-connection](img/p2p-connection.png)
 
-- So the 2 peers have now the 2 endpoint to connect to, so press on both `Connect`.
+- The 2 peers have now the 2 endpoint to connect to, so press on both `Connect`.
 
 - The 2 peers now are able to `sent messages` or take the `Remote Desktop Control` between them.
 
@@ -21,7 +21,7 @@
 </br >
 
 It's use [UDT protocol](https://en.wikipedia.org/wiki/UDP-based_Data_Transfer_Protocol)
-and thanks to `rendezvous` connection, it should be able to `bypass all firewall rules` etc, like a small concepts of `TeamViewer` at 0 cost!
+and thanks to `rendezvous` connection, it should be able to `bypass most firewall rules`, like a small concept of `TeamViewer` at 0 cost!
 
 ![p2p-logic](img/p2p-logic.png)
 
