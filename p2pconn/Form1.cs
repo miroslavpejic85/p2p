@@ -283,7 +283,7 @@ namespace p2pconn
                 if(bConnected == true)
                 {
                     Writetxtchatrom("Blue", txtnsg.Text);
-                    SenderReceiver.SendMessage("c|" + Functions.Base64Encode(txtnsg.Text));
+                    SenderReceiver.SendMessage("c|" + txtnsg.Text);
                     txtnsg.Text = "";
                 }
                 else

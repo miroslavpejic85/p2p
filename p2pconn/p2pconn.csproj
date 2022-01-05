@@ -93,6 +93,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptography\Aes256.cs" />
+    <Compile Include="Cryptography\SafeComparison.cs" />
+    <Compile Include="Cryptography\Sha256.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

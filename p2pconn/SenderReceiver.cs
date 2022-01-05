@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using UdtSharp;
+using Cryptography;
 
 namespace p2pcopy
 {
@@ -24,6 +25,8 @@ namespace p2pcopy
         private static Stopwatch RenderSW = Stopwatch.StartNew();
         [DllImport("user32.dll")]
         private static extern uint MapVirtualKey(uint uCode, uint uMapType);
+        private static string ENCRYPTIONKEY = "SPXGPU3UPSIWSX5NLKFTIVN5RHXZW1F2H8CC2ORE";
+        static readonly Aes256 aes = new Aes256(ENCRYPTIONKEY);
         #endregion
 
         #region "recive data <======"
@@ -44,11 +47,15 @@ namespace p2pcopy
             {
                 try
                 {
-                    string messagge = sreader.ReadString(); // err
-                    if (messagge != null && messagge.Length > 0)
+                    string message = sreader.ReadString(); // err
+
+                    // aes 256 bit decode
+                    message = aes.Decrypt(message);
+
+                    if (message != null && message.Length > 0)
                     {
 
-                        string[] words = messagge.Split('|');
+                        string[] words = message.Split('|');
                         switch (words[0])
                         {
                             case "peer":
@@ -59,7 +66,7 @@ namespace p2pcopy
                                 break;
 
                             case "c":
-                                GlobalVariables.Root.Writetxtchatrom("Green", Functions.Base64Decode(words[1]));
+                                GlobalVariables.Root.Writetxtchatrom("Green", words[1]);
                                 break;
 
                             case "openp2pDesktop":
@@ -223,6 +230,8 @@ namespace p2pcopy
             {
                 if (isConnected && netStream.CanWrite)
                 {
+                    // aes 256 bit encode
+                    message = aes.Encrypt(message);
                     swriter = new BinaryWriter(netStream);
                     swriter.Write(message);
                     swriter.Flush();
