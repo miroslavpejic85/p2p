@@ -51,7 +51,7 @@ namespace StreamLibrary.UnsafeCodecs
         {
             lock (ImageProcessLock)
             {
-                byte* pScan0 = (byte*)Scan0.ToInt32();
+                byte* pScan0 = (byte*)Convert.ToInt64(Scan0.ToString());
                 if (!outStream.CanWrite)
                     throw new Exception("Must have access to Write in the Stream");
 
