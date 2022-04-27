@@ -1,6 +1,12 @@
-# ![p2p-logo](ico/p2p.ico) Remote Desktop P2P
+<p align="center">
+  <img src="ico/p2p.ico" />
+</p>
 
-`Remote Desktop` solution `P2P` based
+# <p align="center">P2P Remote Desktop</p>
+
+<p align="center">Remote Desktop P2P based - Portable, No Configuration or Installation Needed.</p>
+
+<hr />
 
 ## How it works
 
@@ -8,12 +14,11 @@
 
 ![p2p-exe](img/p2p-exe.png)
 
-- Copy the `My Lan or Wan IP` and communicate it to other peer.
+- Copy the `My Lan or Wan IP` and communicate it to other peer and vice versa.
 
 ![p2p-connection](img/p2p-connection.png)
 
 - The 2 peers have now the 2 endpoint to connect to, so press on both `Connect`.
-
 - The 2 peers now are able to `sent messages` or take the `Remote Desktop Control` between them.
 
 ![p2p-remote-desktop](img/p2p-remote-desktop.png)
