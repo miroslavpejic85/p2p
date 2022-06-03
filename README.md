@@ -25,7 +25,7 @@
 
 </br >
 
-It's use [UDT protocol](https://en.wikipedia.org/wiki/UDP-based_Data_Transfer_Protocol)
+It's use [UDP protocol](https://en.wikipedia.org/wiki/UDP-based_Data_Transfer_Protocol)
 and thanks to `rendezvous` connection, it should be able to `bypass most firewall rules`, like a small concept of `TeamViewer` at 0 cost!
 
 ![p2p-logic](img/p2p-logic.png)
