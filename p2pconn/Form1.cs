@@ -11,8 +11,8 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
 using UdtSharp;
-using Newtonsoft.Json;
 using System.IO;
+using p2p.StunServer;
 
 namespace p2pconn
 {
@@ -54,25 +54,18 @@ namespace p2pconn
             if (File.Exists(StunServersJson))
             {
                 // Read data from StunServersJson
-                using (StreamReader r = new StreamReader(StunServersJson))
+                Array StunServers = StunServer.GetStunServersFromFile(StunServersJson);
+                if (StunServers.Length > 0)
                 {
-                    string jsonString = r.ReadToEnd();
-
-                    // StunServersJson Seems Empty
-                    if (jsonString == "[]" || jsonString == "")
+                    int i = 0;
+                    foreach (var _stun in StunServer.GetStunServersFromFile(StunServersJson))
                     {
-                        this.dataGridView1.Rows.Insert(0, "stun.l.google.com", 19302);
-                    } else 
-                    {
-                        // Load data from StunServersJson
-                        List<Formatjson> items = JsonConvert.DeserializeObject<List<Formatjson>>(jsonString);
-                        int i = 0;
-                        foreach (var item in items)
-                        {
-                            this.dataGridView1.Rows.Insert(i, item.Server, item.Port);
-                            i++;
-                        }
+                        this.dataGridView1.Rows.Insert(i, _stun.Server, _stun.Port);
+                        i++;
                     }
+                } else
+                {
+                    this.dataGridView1.Rows.Insert(0, "stun.l.google.com", 19302);
                 }
             }
             else
@@ -191,11 +184,9 @@ namespace p2pconn
 
         private P2pEndPoint GetExternalEndPoint(Socket socket)
         {
-            // https://gist.github.com/zziuni/3741933
-
             List<Tuple<string, int>> stunServers = new List<Tuple<string, int>>();
-            // stunServers.Add(new Tuple<string, int>("stun.l.google.com", 19302));
 
+            // Read Stun Servers from dataGridView
             for (int rows = 0; rows < this.dataGridView1.Rows.Count; rows++)
             {
                 if (this.dataGridView1.Rows[rows].Cells["Server"].Value != null && this.dataGridView1.Rows[rows].Cells["Port"].Value != null)
@@ -206,6 +197,10 @@ namespace p2pconn
                     stunServers.Add(new Tuple<string, int>(Server, Port));
                 }
             }
+
+            // https://gist.github.com/zziuni/3741933
+
+            // stunServers.Add(new Tuple<string, int>("stun.l.google.com", 19302));
 
             Console.WriteLine("Contacting STUN servers to obtain your IP");
 
@@ -575,7 +570,7 @@ namespace p2pconn
                 this.dataGridView1.Rows.Insert(0, "stun.l.google.com", 19302);
             }
 
-            var ListJsonStunServers = new List<Formatjson>();
+            var ListJsonStunServers = new List<StunServer>();
 
             for (int rows = 0; rows < this.dataGridView1.Rows.Count; rows++)
             {
@@ -584,18 +579,17 @@ namespace p2pconn
                     string Server = Convert.ToString(this.dataGridView1.Rows[rows].Cells["Server"].Value);
                     int Port = Convert.ToInt32(this.dataGridView1.Rows[rows].Cells["Port"].Value);
 
-                    var item = new Formatjson
+                    var _stun = new StunServer
                     {
                         Server = Server,
                         Port = Port,
                     };
-                    ListJsonStunServers.Add(item);
+                    ListJsonStunServers.Add(_stun);
                 }
             }
 
-            string JSONString = JsonConvert.SerializeObject(ListJsonStunServers);
-            File.WriteAllText(StunServersJson, JSONString);
-
+            StunServer.WriteStunServersToFile(ListJsonStunServers, StunServersJson);
+           
             if (this.dataGridView1.Rows.Count > 1)
             {
                 MessageBox.Show("Stun Servers List saved to: " + StunServersJson);
@@ -609,12 +603,6 @@ namespace p2pconn
                 File.Delete(StunServersJson);
             }
         }
-    }
-
-    public class Formatjson
-    {
-        public string Server { get; set; }
-        public int Port { get; set; }
     }
 
     public class GlobalVariables

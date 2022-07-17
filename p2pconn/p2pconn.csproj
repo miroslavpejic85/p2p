@@ -130,6 +130,7 @@
     <Compile Include="StreamingDesktop\IVideoSource.cs" />
     <Compile Include="StreamingDesktop\ScreenCaptureStream.cs" />
     <Compile Include="StreamingDesktop\VideoEvents.cs" />
+    <Compile Include="StunServer\StunServer.cs" />
     <Compile Include="UdtSharpLib\AckNumber.cs" />
     <Compile Include="UdtSharpLib\Buffer.cs" />
     <Compile Include="UdtSharpLib\Channel.cs" />
