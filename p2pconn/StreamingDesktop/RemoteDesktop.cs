@@ -161,9 +161,10 @@ namespace p2pconn
                 if (GetCursorInfo(out pci))
                 {
                     IntPtr htcursor = pci.hCursor;
-                    Cursor micursor = null;
-                    micursor = new Cursor(htcursor);
-                    Tipo = micursor.ToString();
+                    using (var micursor = new Cursor(htcursor))
+                    {
+                        Tipo = micursor.ToString();
+                    }
                 }
             }
             catch // (Exception ex)
