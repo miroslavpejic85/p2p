@@ -67,8 +67,6 @@ namespace UdtSharp
             {
                 IPEndPoint clientEndPoint = null;
                 int clientSocketId = UDT.s_UDTUnited.accept(mSocketId, ref clientEndPoint);
-                if (clientSocketId == UDT.INVALID_SOCK)
-                    return null;
 
                 return new UdtSocket(clientSocketId, clientEndPoint, mLocalEndPoint);
             }

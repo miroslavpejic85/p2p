@@ -735,7 +735,7 @@ namespace UdtSharp
                 ulong ctime = currtime - 100000 * Timer.getCPUFrequency();
                 for (int i = 0; i < self.m_pRcvUList.m_nodeList.Count; ++i)
                 {
-                    RNode ul = self.m_pRcvUList.m_nodeList[0];
+                    RNode ul = self.m_pRcvUList.m_nodeList[i];
                     if (ul.m_llTimeStamp >= ctime)
                         break;
 
