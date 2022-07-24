@@ -30,13 +30,9 @@ and thanks to `rendezvous` connection, it should be able to `bypass most firewal
 
 ![p2p-logic](img/p2p-logic.png)
 
-</br >
-
 ## Note
 
-The app doesn't have a `digital signature` being an open source project, so it may be detected as a `false positive` by AVs being a `unrecognized app`. When you build it from the source, just add it in the exception, and Thanks for understanding.
-
-</br>
+The app doesn't have a `digital signature` being an open source project, it may be detected as a `false positive` by AVs. When you compile it from the source code, just add the project in the exception. Thank you for understanding.
 
 ## Contributing
 
