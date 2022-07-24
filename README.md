@@ -32,6 +32,12 @@ and thanks to `rendezvous` connection, it should be able to `bypass most firewal
 
 </br >
 
+## Note
+
+The app doesn't have a `digital signature` being an open source project, so it may be detected as a `false positive` by AVs being a `unrecognized app`. When you build it from the source, just add it in the exception, and Thanks for understanding.
+
+</br>
+
 ## Contributing
 
 Contributions are welcome and greatly appreciated!
