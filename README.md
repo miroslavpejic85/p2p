@@ -41,3 +41,7 @@ Contributions are welcome and greatly appreciated!
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&logo=AdGuard)](LICENSE)
+
+## Support
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mirotalk/p2p-remote-desktop-portable)
