@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using UdtSharp;
 using System.IO;
 using p2p.StunServer;
+using p2p.p2p;
 
 namespace p2pconn
 {
@@ -93,6 +94,34 @@ namespace p2pconn
             string[] words = localendpoint.Split(':');
             // txtLocalHost.Text = Functions.Base64Encode(GetPhysicalIPAdress() + ":" + words[1]);
             txtLocalHost.Text = GetPhysicalIPAdress() + ":" + words[1];
+        }
+
+        {
+            P2pEndPoint p2pEndPoint = GetP2pEndPoint();
+
+            if (p2pEndPoint == null)
+                return;
+
+            // txtmyHost.Text = Functions.Base64Encode(p2pEndPoint.External.ToString());
+            txtmyHost.Text = p2pEndPoint.External.ToString();
+            Clipboard.SetText(p2pEndPoint.External.ToString());
+            string localendpoint = p2pEndPoint.Internal.ToString();
+            string[] words = localendpoint.Split(':');
+            // txtLocalHost.Text = Functions.Base64Encode(GetPhysicalIPAdress() + ":" + words[1]);
+            txtLocalHost.Text = GetPhysicalIPAdress() + ":" + words[1];
+
+            P2pEndPoint GetP2pEndPoint()
+            {
+                string storedPort = RegistryFuncs.GetFromRegistry(P2PKeys.LastPort);
+                int newPort = r.Next(49152, 65535);
+                if (!string.IsNullOrEmpty(storedPort))
+                    newPort = Convert.ToInt32(storedPort);
+                socket.Bind(new IPEndPoint(IPAddress.Any, newPort));
+                P2pEndPoint tmpEndPoint = GetExternalEndPoint(socket);
+                if (tmpEndPoint != null)
+                    RegistryFuncs.SetToRegistry(P2PKeys.LastPort, newPort.ToString());
+                return tmpEndPoint;
+            }
         }
 
         private string GetPhysicalIPAdress()
