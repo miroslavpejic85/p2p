@@ -79,24 +79,6 @@ namespace p2pconn
 
         private void GetEndPoint()
         {
-            int newPort = r.Next(49152, 65535);
-            socket.Bind(new IPEndPoint(IPAddress.Any, newPort));
-
-            P2pEndPoint p2pEndPoint = GetExternalEndPoint(socket);
-
-            if (p2pEndPoint == null)
-                return;
-
-            // txtmyHost.Text = Functions.Base64Encode(p2pEndPoint.External.ToString());
-            txtmyHost.Text = p2pEndPoint.External.ToString();
-            Clipboard.SetText(p2pEndPoint.External.ToString());
-            string localendpoint = p2pEndPoint.Internal.ToString();
-            string[] words = localendpoint.Split(':');
-            // txtLocalHost.Text = Functions.Base64Encode(GetPhysicalIPAdress() + ":" + words[1]);
-            txtLocalHost.Text = GetPhysicalIPAdress() + ":" + words[1];
-        }
-
-        {
             P2pEndPoint p2pEndPoint = GetP2pEndPoint();
 
             if (p2pEndPoint == null)
