@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using UdtSharp;
 using System.IO;
 using p2p.StunServer;
+using p2p;
 
 namespace p2pconn
 {
@@ -63,7 +64,8 @@ namespace p2pconn
                         this.dataGridView1.Rows.Insert(i, _stun.Server, _stun.Port);
                         i++;
                     }
-                } else
+                }
+                else
                 {
                     this.dataGridView1.Rows.Insert(0, "stun.l.google.com", 19302);
                 }
@@ -78,13 +80,8 @@ namespace p2pconn
 
         private void GetEndPoint()
         {
-            int newPort = r.Next(49152, 65535);
-            socket.Bind(new IPEndPoint(IPAddress.Any, newPort));
-
-            P2pEndPoint p2pEndPoint = GetExternalEndPoint(socket);
-
-            if (p2pEndPoint == null)
-                return;
+            P2pEndPoint p2pEndPoint = GetEndPoint();
+            if (p2pEndPoint == null) return;
 
             // txtmyHost.Text = Functions.Base64Encode(p2pEndPoint.External.ToString());
             txtmyHost.Text = p2pEndPoint.External.ToString();
@@ -93,6 +90,21 @@ namespace p2pconn
             string[] words = localendpoint.Split(':');
             // txtLocalHost.Text = Functions.Base64Encode(GetPhysicalIPAdress() + ":" + words[1]);
             txtLocalHost.Text = GetPhysicalIPAdress() + ":" + words[1];
+
+            P2pEndPoint GetEndPoint()
+            {
+                string newPort = RegistryFuncs.GetFromRegistry(P2PKeys.LastExternalPort);
+                int sugestedPort;
+                if (newPort == null)
+                    sugestedPort = r.Next(49152, 65535);
+                else
+                    sugestedPort = Convert.ToInt32(newPort);
+                socket.Bind(new IPEndPoint(IPAddress.Any, sugestedPort));
+                P2pEndPoint tmpp2pEndPoint = GetExternalEndPoint(socket);
+                if (tmpp2pEndPoint != null)
+                    RegistryFuncs.SetToRegistry(P2PKeys.LastExternalPort, sugestedPort.ToString());
+                return tmpp2pEndPoint;
+            }
         }
 
         private string GetPhysicalIPAdress()
@@ -147,7 +159,7 @@ namespace p2pconn
                 if (connection == null)
                 {
                     label4.Invoke((MethodInvoker)(() => label4.ForeColor = Color.Red));
-                    label4.Invoke((MethodInvoker)(() => label4.Text = "Failed to establish P2P conn to " + remoteIp)); 
+                    label4.Invoke((MethodInvoker)(() => label4.Text = "Failed to establish P2P conn to " + remoteIp));
                     return;
                 }
                 try
@@ -279,7 +291,7 @@ namespace p2pconn
         private void CloseAll()
         {
             if (bConnected == true)
-            { 
+            {
                 SenderReceiver.SendMessage("end|");
                 thread.Abort();
                 SenderReceiver.netStream.Close();
@@ -341,7 +353,7 @@ namespace p2pconn
         {
             if (txtnsg.Text != "")
             {
-                if(bConnected == true)
+                if (bConnected == true)
                 {
                     Writetxtchatrom("Blue", txtnsg.Text);
                     SenderReceiver.SendMessage("c|" + txtnsg.Text);
@@ -362,7 +374,7 @@ namespace p2pconn
         {
             txtRemoteIP.Text = Clipboard.GetText();
             Clipboard.SetText(txtmyHost.Text);
-            if(txtmyHost.Text == txtRemoteIP.Text || txtLocalHost.Text == txtRemoteIP.Text)
+            if (txtmyHost.Text == txtRemoteIP.Text || txtLocalHost.Text == txtRemoteIP.Text)
             {
                 txtRemoteIP.Text = "";
                 MessageBox.Show("Please paste peer remote host:port not your!");
@@ -511,7 +523,7 @@ namespace p2pconn
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(RemoteDesktop.DesktopRunning == true)
+            if (RemoteDesktop.DesktopRunning == true)
             {
                 if (checkBox1.Checked == true)
                 {
@@ -553,7 +565,8 @@ namespace p2pconn
                 {
                     if (row.IsNewRow) continue;
                     this.dataGridView1.Rows.RemoveAt(row.Index);
-                    CheckJsonFile();                }
+                    CheckJsonFile();
+                }
             }
         }
 
@@ -589,7 +602,7 @@ namespace p2pconn
             }
 
             StunServer.WriteStunServersToFile(ListJsonStunServers, StunServersJson);
-           
+
             if (this.dataGridView1.Rows.Count > 1)
             {
                 MessageBox.Show("Stun Servers List saved to: " + StunServersJson);

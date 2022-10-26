@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "p2pconn", "p2pconn\p2pconn.csproj", "{33456E72-F8E8-4384-88C4-700867DF12E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P2pConnWpf", "P2pConnWpf\P2pConnWpf.csproj", "{DEBE4A7E-C49B-435E-A182-77AC08F72A53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{33456E72-F8E8-4384-88C4-700867DF12E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33456E72-F8E8-4384-88C4-700867DF12E2}.Release|x86.ActiveCfg = Release|x86
 		{33456E72-F8E8-4384-88C4-700867DF12E2}.Release|x86.Build.0 = Release|x86
+		{DEBE4A7E-C49B-435E-A182-77AC08F72A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEBE4A7E-C49B-435E-A182-77AC08F72A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEBE4A7E-C49B-435E-A182-77AC08F72A53}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DEBE4A7E-C49B-435E-A182-77AC08F72A53}.Debug|x86.Build.0 = Debug|Any CPU
+		{DEBE4A7E-C49B-435E-A182-77AC08F72A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEBE4A7E-C49B-435E-A182-77AC08F72A53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEBE4A7E-C49B-435E-A182-77AC08F72A53}.Release|x86.ActiveCfg = Release|Any CPU
+		{DEBE4A7E-C49B-435E-A182-77AC08F72A53}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
