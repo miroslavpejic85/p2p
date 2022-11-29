@@ -70,9 +70,9 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Window;
@@ -81,18 +81,18 @@
             this.label3.Size = new System.Drawing.Size(86, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Peer IP:";
-            // 
+            //
             // txtRemoteIP
-            // 
+            //
             this.txtRemoteIP.BackColor = System.Drawing.SystemColors.Control;
             this.txtRemoteIP.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtRemoteIP.Location = new System.Drawing.Point(117, 63);
             this.txtRemoteIP.Name = "txtRemoteIP";
             this.txtRemoteIP.Size = new System.Drawing.Size(136, 14);
             this.txtRemoteIP.TabIndex = 9;
-            // 
+            //
             // button2
-            // 
+            //
             this.button2.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -105,9 +105,9 @@
             this.button2.Text = "Connect";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.BackColor = System.Drawing.SystemColors.Control;
             this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.MenuHighlight;
@@ -116,9 +116,9 @@
             this.label4.Size = new System.Drawing.Size(329, 13);
             this.label4.TabIndex = 11;
             this.label4.Text = "Idle...";
-            // 
+            //
             // txtnsg
-            // 
+            //
             this.txtnsg.BackColor = System.Drawing.SystemColors.Control;
             this.txtnsg.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtnsg.Location = new System.Drawing.Point(5, 234);
@@ -126,9 +126,9 @@
             this.txtnsg.Name = "txtnsg";
             this.txtnsg.Size = new System.Drawing.Size(246, 57);
             this.txtnsg.TabIndex = 15;
-            // 
+            //
             // button4
-            // 
+            //
             this.button4.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -141,9 +141,9 @@
             this.button4.Text = "Send";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
+            //
             // btn_paste
-            // 
+            //
             this.btn_paste.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btn_paste.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_paste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -156,9 +156,9 @@
             this.btn_paste.Text = "Paste";
             this.btn_paste.UseVisualStyleBackColor = false;
             this.btn_paste.Click += new System.EventHandler(this.btn_paste_Click);
-            // 
+            //
             // r_chat
-            // 
+            //
             this.r_chat.BackColor = System.Drawing.SystemColors.Control;
             this.r_chat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.r_chat.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -170,9 +170,9 @@
             this.r_chat.Text = "";
             this.r_chat.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.r_chat_LinkClicked);
             this.r_chat.TextChanged += new System.EventHandler(this.r_chat_TextChanged);
-            // 
+            //
             // button1
-            // 
+            //
             this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -185,9 +185,9 @@
             this.button1.Text = "copy";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
+            //
             // label5
-            // 
+            //
             this.label5.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.Window;
@@ -196,9 +196,9 @@
             this.label5.Size = new System.Drawing.Size(86, 13);
             this.label5.TabIndex = 20;
             this.label5.Text = "My Wan IP:";
-            // 
+            //
             // btnRdp
-            // 
+            //
             this.btnRdp.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnRdp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRdp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -211,9 +211,9 @@
             this.btnRdp.Text = "Desktop";
             this.btnRdp.UseVisualStyleBackColor = false;
             this.btnRdp.Click += new System.EventHandler(this.btnRdp_Click);
-            // 
+            //
             // tabControl1
-            // 
+            //
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -223,9 +223,9 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(348, 339);
             this.tabControl1.TabIndex = 22;
-            // 
+            //
             // tabPage1
-            // 
+            //
             this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.txtLocalHost);
@@ -248,9 +248,9 @@
             this.tabPage1.Size = new System.Drawing.Size(340, 313);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Peer";
-            // 
+            //
             // button3
-            // 
+            //
             this.button3.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -263,9 +263,9 @@
             this.button3.Text = "copy";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
+            //
             // txtLocalHost
-            // 
+            //
             this.txtLocalHost.BackColor = System.Drawing.SystemColors.Control;
             this.txtLocalHost.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLocalHost.Location = new System.Drawing.Point(117, 39);
@@ -273,9 +273,9 @@
             this.txtLocalHost.ReadOnly = true;
             this.txtLocalHost.Size = new System.Drawing.Size(136, 14);
             this.txtLocalHost.TabIndex = 24;
-            // 
+            //
             // label13
-            // 
+            //
             this.label13.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.label13.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.Window;
@@ -284,9 +284,9 @@
             this.label13.Size = new System.Drawing.Size(86, 13);
             this.label13.TabIndex = 23;
             this.label13.Text = "My Lan IP:";
-            // 
+            //
             // txtmyHost
-            // 
+            //
             this.txtmyHost.BackColor = System.Drawing.SystemColors.Control;
             this.txtmyHost.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtmyHost.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -295,9 +295,9 @@
             this.txtmyHost.ReadOnly = true;
             this.txtmyHost.Size = new System.Drawing.Size(136, 14);
             this.txtmyHost.TabIndex = 22;
-            // 
+            //
             // tabPage2
-            // 
+            //
             this.tabPage2.Controls.Add(this.button7);
             this.tabPage2.Controls.Add(this.button6);
             this.tabPage2.Controls.Add(this.dataGridView1);
@@ -307,9 +307,9 @@
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Stun";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
+            //
             // button7
-            // 
+            //
             this.button7.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -322,9 +322,9 @@
             this.button7.Text = "Save";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
+            //
             // button6
-            // 
+            //
             this.button6.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -337,9 +337,9 @@
             this.button6.Text = "Delete";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
+            //
             // dataGridView1
-            // 
+            //
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -350,20 +350,20 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(327, 269);
             this.dataGridView1.TabIndex = 0;
-            // 
+            //
             // Server
-            // 
+            //
             this.Server.HeaderText = "Server";
             this.Server.Name = "Server";
             this.Server.Width = 170;
-            // 
+            //
             // Port
-            // 
+            //
             this.Port.HeaderText = "Port";
             this.Port.Name = "Port";
-            // 
+            //
             // tabPage3
-            // 
+            //
             this.tabPage3.Controls.Add(this.checkBox1);
             this.tabPage3.Controls.Add(this.dspeed);
             this.tabPage3.Controls.Add(this.lblFPS);
@@ -377,9 +377,9 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Desktop";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
+            //
             // checkBox1
-            // 
+            //
             this.checkBox1.AutoSize = true;
             this.checkBox1.BackColor = System.Drawing.SystemColors.Window;
             this.checkBox1.Enabled = false;
@@ -389,12 +389,12 @@
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(133, 17);
             this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Streach Desktop";
+            this.checkBox1.Text = "Stretch Desktop";
             this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
+            //
             // dspeed
-            // 
+            //
             this.dspeed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.dspeed.Enabled = false;
             this.dspeed.FormattingEnabled = true;
@@ -411,9 +411,9 @@
             this.dspeed.Size = new System.Drawing.Size(58, 21);
             this.dspeed.TabIndex = 9;
             this.dspeed.SelectedIndexChanged += new System.EventHandler(this.dspeed_SelectedIndexChanged);
-            // 
+            //
             // lblFPS
-            // 
+            //
             this.lblFPS.AutoSize = true;
             this.lblFPS.BackColor = System.Drawing.Color.Transparent;
             this.lblFPS.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -423,9 +423,9 @@
             this.lblFPS.Size = new System.Drawing.Size(37, 13);
             this.lblFPS.TabIndex = 4;
             this.lblFPS.Text = "FPS: ";
-            // 
+            //
             // label15
-            // 
+            //
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -435,9 +435,9 @@
             this.label15.Size = new System.Drawing.Size(19, 13);
             this.label15.TabIndex = 11;
             this.label15.Text = "MS";
-            // 
+            //
             // lblkb
-            // 
+            //
             this.lblkb.AutoSize = true;
             this.lblkb.BackColor = System.Drawing.Color.Transparent;
             this.lblkb.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -447,9 +447,9 @@
             this.lblkb.Size = new System.Drawing.Size(49, 13);
             this.lblkb.TabIndex = 5;
             this.lblkb.Text = "FSIZE: ";
-            // 
+            //
             // label14
-            // 
+            //
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.MenuHighlight;
@@ -458,9 +458,9 @@
             this.label14.Size = new System.Drawing.Size(43, 13);
             this.label14.TabIndex = 10;
             this.label14.Text = "DELAY:";
-            // 
+            //
             // tabPage4
-            // 
+            //
             this.tabPage4.Controls.Add(this.richTextBox1);
             this.tabPage4.Controls.Add(this.pictureBox1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -470,9 +470,9 @@
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "About";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
+            //
             // richTextBox1
-            // 
+            //
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Location = new System.Drawing.Point(29, 146);
             this.richTextBox1.Name = "richTextBox1";
@@ -481,9 +481,9 @@
             this.richTextBox1.Text = "Remote Desktop P2P based.\n\nGitHub: https://github.com/miroslavpejic85/p2p\n\nLinked" +
     "in: https://www.linkedin.com/in/miroslav-pejic-976a07101/";
             this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox1_LinkClicked);
-            // 
+            //
             // pictureBox1
-            // 
+            //
             this.pictureBox1.Image = global::p2p.Properties.Resources.p2p1;
             this.pictureBox1.Location = new System.Drawing.Point(29, 24);
             this.pictureBox1.Name = "pictureBox1";
@@ -491,9 +491,9 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
+            //
             // Form1
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(351, 343);
@@ -557,4 +557,3 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Port;
     }
 }
-
