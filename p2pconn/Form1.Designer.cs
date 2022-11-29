@@ -389,7 +389,7 @@
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(133, 17);
             this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "stretch Desktop";
+            this.checkBox1.Text = "Stretch Desktop";
             this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             //
