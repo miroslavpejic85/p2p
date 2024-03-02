@@ -20,21 +20,18 @@ jobs:
         msbuild-version: '16.0'  # Adjust to the version your project requires
 
     - name: Restore NuGet packages
-      run: nuget restore
-
-    - name: Copy packages to output directory
-      run: |
-        mkdir -p "./packages"
-        mkdir -p "./bin/Release/"
-        Copy-Item -Path "./packages" -Destination "./bin/Release/"
+      run: nuget restore p2pconn.sln
 
     - name: Build
-      run: msbuild /p:Configuration=Release
+      run: | 
+        msbuild p2pconn.sln /p:Configuration=Release
+        cd ./p2pconn
+        msbuild /t:Publish /p:Configuration=Release
 
     - name: List contents of p2pconn/bin/Release
-      run: ls -R p2pconn/bin/Release
+      run: ls -R ./
 
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        files: p2pconn/bin/Release/p2p.exe
+        files: p2pconn/bin/ReleasePublish/p2p.exe
