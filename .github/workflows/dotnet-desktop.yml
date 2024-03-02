@@ -29,7 +29,9 @@ jobs:
       run: |
         nuget install ilmerge -Version 3.0.41 -OutputDirectory ./ilmerge
         ls -R ./
-        ./ilmerge/ILMerge.Console.3.0.41/tools/net461/ILMerge.exe /out:./bin/Release/p2p-portable.exe ./bin/Release/p2p.exe ./bin/Release/*.dll
+        ./ilmerge/ILMerge.3.0.41/tools/net452/ILMerge.exe /out:p2p-portable.exe ./bin/Release/p2p.exe ./bin/Release/*.dll
+        move p2p-portable.exe .\bin\Release\
+        
 
     - name: List contents of p2pconn/bin/Release
       run: ls -R ./
