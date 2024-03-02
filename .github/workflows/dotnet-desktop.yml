@@ -24,8 +24,8 @@ jobs:
 
     - name: Copy packages to output directory
       run: |
-        mkdir "./packages"
-        mkdir "./bin/Release/"
+        mkdir -p "./packages"
+        mkdir -p "./bin/Release/"
         Copy-Item -Path "./packages" -Destination "./bin/Release/"
 
     - name: Build
