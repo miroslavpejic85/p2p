@@ -30,9 +30,15 @@ jobs:
     - name: List contents of p2pconn/bin/Release
       run: ls -R p2pconn/bin/Release
 
-    - name: Get latest tag
-      id: get-latest-tag
-      uses: actions-ecosystem/action-get-latest-tag@v1
+    - name: Get latest release tag
+      run: |
+        LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: p2pconn/bin/Release/p2p.exe
+        tag_name: ${{ env.LATEST_TAG }}
 
     - name: Release
       uses: softprops/action-gh-release@v1
