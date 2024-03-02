@@ -9,19 +9,22 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-latest  # Use a Windows runner for .NET Framework projects
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1
+    - name: Set up MSBuild
+      uses: microsoft/setup-msbuild@v1
       with:
-        dotnet-version: '3.1' # Update to the version you're using
+        msbuild-version: '16.0'  # Adjust to the version your project requires
+
+    - name: Restore NuGet packages
+      run: nuget restore
 
     - name: Build
-      run: dotnet build -c Release
+      run: msbuild /p:Configuration=Release
 
   upload:
     runs-on: ubuntu-latest
