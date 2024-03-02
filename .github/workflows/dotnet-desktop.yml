@@ -27,9 +27,9 @@ jobs:
 
     - name: ILMerge
       run: |
-        nuget install ILMerge.Console -Version 3.0.29 -OutputDirectory ./ilmerge
+        nuget install ilmerge -Version 3.0.41 -OutputDirectory ./ilmerge
         ls -R ./
-        ./ilmerge/ILMerge.Console.3.0.29/tools/net461/ILMerge.exe /out:./bin/Release/p2p-portable.exe ./bin/Release/p2p.exe ./bin/Release/*.dll
+        ./ilmerge/ILMerge.Console.3.0.41/tools/net461/ILMerge.exe /out:./bin/Release/p2p-portable.exe ./bin/Release/p2p.exe ./bin/Release/*.dll
 
     - name: List contents of p2pconn/bin/Release
       run: ls -R ./
