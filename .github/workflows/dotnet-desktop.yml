@@ -23,14 +23,12 @@ jobs:
       run: nuget restore p2pconn.sln
 
     - name: Build
-      run: | 
-        msbuild p2pconn.sln /p:Configuration=Release
-        cd ./p2pconn
-        msbuild /t:Publish /p:Configuration=Release
+      run: msbuild p2pconn.sln /p:Configuration=Release
 
     - name: ILMerge
       run: |
         nuget install ILMerge.Console -Version 3.0.30 -OutputDirectory .\ilmerge
+        ls -R ./
         ./ilmerge/ILMerge.Console.3.0.30/tools/net461/ILMerge.exe /out:./bin/Release/p2p-portable.exe ./bin/Release/p2p.exe ./bin/Release/*.dll
 
     - name: List contents of p2pconn/bin/Release
