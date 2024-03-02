@@ -1,49 +1,38 @@
-name: .NET Core Desktop
+name: Release Workflow
 
 on:
   release:
-    types: [released]
+    types:
+      - created
 
 jobs:
-
   build:
-
-    strategy:
-      matrix:
-        configuration: [Release]
-
-    runs-on: windows-latest
-
-    env:
-      Solution_Name: p2pconn.sln
-      Test_Project_Path: p2pconn/p2pconn.csproj
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
       with:
-        fetch-depth: 0
+        dotnet-version: '3.1' # Update to the version you're using
 
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v3
+    - name: Build
+      run: dotnet build -c Release
+
+  upload:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: List contents of bin/Release
+      run: ls -R bin/Release
+
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
       with:
-        dotnet-version: 6.0.x
-
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
-
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
-
-    - name: Create the app package
-      run: msbuild $env:Solution_Name /t:Publish /p:Configuration=$env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
-
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: Published Application
-        path: ${{ env.Solution_Name }}/bin/$env:Configuration/netcoreapp3.1/publish/
+        upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets
+        asset_path: ./bin/Release/p2p.exe  # Update this path
+        asset_name: p2p.exe  # Update this name
+        asset_content_type: application/octet-stream
