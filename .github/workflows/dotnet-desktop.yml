@@ -34,6 +34,6 @@ jobs:
       uses: actions/upload-release-asset@v1
       with:
         upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets
-        asset_path: .p2pconn/bin/Release/p2p.exe  # Update this path
+        asset_path: p2pconn/bin/Release/p2p.exe  # Update this path
         asset_name: p2p.exe  # Update this name
         asset_content_type: application/octet-stream
