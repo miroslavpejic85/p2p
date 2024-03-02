@@ -32,6 +32,6 @@ jobs:
 
     - name: Release
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
+      if: true
       with:
         files: p2pconn/bin/Release/p2p.exe
