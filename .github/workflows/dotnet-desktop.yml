@@ -30,8 +30,12 @@ jobs:
     - name: List contents of p2pconn/bin/Release
       run: ls -R p2pconn/bin/Release
 
+    - name: Get latest release tag
+      id: get_tag
+      run: echo "::set-output name=TAG::$(gh release list --limit 1 --json tag_name --repo $GITHUB_REPOSITORY)"
+
     - name: Release
       uses: softprops/action-gh-release@v1
-      if: true
       with:
         files: p2pconn/bin/Release/p2p.exe
+        tag_name: ${{ steps.get_tag.outputs.TAG }}
