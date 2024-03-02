@@ -28,13 +28,10 @@ jobs:
         cd ./p2pconn
         msbuild /t:Publish /p:Configuration=Release
 
-    - name: Install ILMerge
+    - name: ILMerge
       run: |
         nuget install ILMerge.Console -Version 3.0.30 -OutputDirectory .\ilmerge
-        Set-Location .\ilmerge\ILMerge.Console.3.0.30\tools\net461
-
-    - name: Merge assemblies with ILMerge
-      run: ./ILMerge.exe /out:p2p-portable.exe ./bin/Release/p2p.exe ./bin/Release/*.dll
+        ./ilmerge/ILMerge.Console.3.0.30/tools/net461/ILMerge.exe /out:./bin/Release/p2p-portable.exe ./bin/Release/p2p.exe ./bin/Release/*.dll
 
     - name: List contents of p2pconn/bin/Release
       run: ls -R ./
