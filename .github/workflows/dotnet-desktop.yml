@@ -22,6 +22,12 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore
 
+    - name: Copy packages to output directory
+      run: |
+        mkdir "./packages"
+        mkdir "./bin/Release/"
+        Copy-Item -Path "./packages" -Destination "./bin/Release/"
+
     - name: Build
       run: msbuild /p:Configuration=Release
 
