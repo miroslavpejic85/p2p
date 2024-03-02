@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     permissions: write-all
-    runs-on: windows-latest  # Use a Windows runner for .NET Framework projects
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
@@ -17,7 +17,7 @@ jobs:
     - name: Set up MSBuild
       uses: microsoft/setup-msbuild@v1
       with:
-        msbuild-version: '16.0'  # Adjust to the version your project requires
+        msbuild-version: '16.0'
 
     - name: Restore NuGet packages
       run: nuget restore p2pconn.sln
@@ -25,18 +25,14 @@ jobs:
     - name: Build
       run: msbuild p2pconn.sln /p:Configuration=Release
 
-    - name: ILMerge
+    - name: Zip files in p2pconn/bin/Release
       run: |
-        nuget install ilmerge -Version 3.0.41 -OutputDirectory ./ilmerge
-        ls -R ./
-        ./ilmerge/ILMerge.3.0.41/tools/net452/ILMerge.exe /out:p2p-portable.exe ./p2pconn/bin/Release/p2p.exe ./p2pconn/bin/Release/*.dll
-        move p2p-portable.exe ./p2pconn/bin/Release/
-        
+        Compress-Archive -Path ./p2pconn/bin/Release/* -DestinationPath ./p2pconn/bin/Release/p2p-portable.zip
 
     - name: List contents of p2pconn/bin/Release
-      run: ls -R ./
+      run: ls -R ./p2pconn/bin/Release
 
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        files: p2pconn/bin/Release/*.exe
+        files: p2pconn/bin/Release/p2p-portable.zip
