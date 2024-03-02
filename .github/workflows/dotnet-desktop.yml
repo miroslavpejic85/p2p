@@ -1,4 +1,4 @@
-name: Release Workflow
+name: Build and Attach to Release
 
 on:
   workflow_dispatch:
@@ -26,10 +26,6 @@ jobs:
     - name: Build
       run: msbuild /p:Configuration=Release
 
-  upload:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
     - name: List contents of p2pconn/bin/Release
       run: ls -R p2pconn/bin/Release
 
