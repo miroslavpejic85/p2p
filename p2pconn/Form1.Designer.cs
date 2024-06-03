@@ -1,4 +1,7 @@
-﻿namespace p2pconn
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace p2pconn
 {
     partial class Form1
     {
