@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace p2p.StunServer
 {
@@ -16,10 +18,17 @@ namespace p2p.StunServer
         /// </summary>
         /// <param name="filePath">Full path to the local Stun Server list (.JSON). Example: C:\Users\Administrator\Downloads\StunServers.json</param>
         /// <returns>An array of 'StunServer' objects.</returns>
-        public static StunServer[] GetStunServersFromFile(string filePath)
+        public static async Task<StunServer[]> GetStunServersFromFileAsync(string filePath)
         {
-            string _json = System.IO.File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<StunServer[]>(_json);
+            var fileHandle = File.OpenRead(filePath);
+
+            var stunServers = await JsonSerializer.DeserializeAsync<StunServer[]>(fileHandle);
+            if (stunServers is null)
+            {
+                return [];
+            }
+
+            return stunServers;
         }
 
         /// <summary>
@@ -28,10 +37,11 @@ namespace p2p.StunServer
         /// <param name="StunServer">Stun Server lists</param>
         /// <param name="filePath">Full path to the local Stun Server list (.JSON). Example: C:\Users\Administrator\Downloads\StunServers.json</param>
         /// <returns>Bool true/false</returns>
-        public static bool WriteStunServersToFile(List<StunServer> StunServer, string filePath)
+        public static async Task<bool> WriteStunServersToFileAsync(List<StunServer> StunServer, string filePath)
         {
-            string JSONString = JsonConvert.SerializeObject(StunServer);
-            File.WriteAllText(filePath, JSONString);
+            string JSONString = JsonSerializer.Serialize(StunServer);
+            await File.WriteAllTextAsync(filePath, JSONString);
+
             return true;
         }
 
@@ -40,14 +50,20 @@ namespace p2p.StunServer
         /// </summary>
         /// <param name="fileUrl">Full URL to the Stun Server list (.JSON). Example: "https://raw.github.com/username/repo/files/StunServers.json"</param>
         /// <returns>An array of 'StunServer' objects.</returns>
-        public static StunServer[] GetStunServersFromUrl(string fileUrl)
+        public static async Task<StunServer[]> GetStunServersFromUrlAsync(string fileUrl)
         {
-            string _json;
-            using (System.Net.WebClient wc = new System.Net.WebClient())
+            using (var httpClient = new HttpClient())
             {
-                _json = wc.DownloadString(fileUrl);
+                var stream = await httpClient.GetStreamAsync(fileUrl);
+
+                var stunServers = await JsonSerializer.DeserializeAsync<StunServer[]>(stream);
+                if (stunServers is null)
+                {
+                    return [];
+                }
+
+                return stunServers;
             }
-            return JsonConvert.DeserializeObject<StunServer[]>(_json);
         }
 
         /// <summary>
@@ -57,7 +73,13 @@ namespace p2p.StunServer
         /// <returns>An array of 'StunServer' objects.</returns>
         public static StunServer[] GetStunServersFromJson(string json)
         {
-            return JsonConvert.DeserializeObject<StunServer[]>(json);
+            var stunServers = JsonSerializer.Deserialize<StunServer[]>(json);
+            if (stunServers is null)
+            {
+                return [];
+            }
+
+            return stunServers;
         }
     }
 }

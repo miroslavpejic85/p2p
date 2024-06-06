@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using UdtSharp;
 using System.IO;
 using p2p.StunServer;
+using System.Threading.Tasks;
 
 namespace p2pconn
 {
@@ -41,24 +42,24 @@ namespace p2pconn
 
         private readonly string StunServersJson = Directory.GetCurrentDirectory() + "\\StunServers.json";
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             myname = Environment.UserName;
             dspeed.SelectedIndex = 2;
-            CheckDataGridView();
+            await CheckDataGridViewAsync();
             GetEndPoint();
         }
 
-        private void CheckDataGridView()
+        private async Task CheckDataGridViewAsync()
         {
             if (File.Exists(StunServersJson))
             {
                 // Read data from StunServersJson
-                Array StunServers = StunServer.GetStunServersFromFile(StunServersJson);
+                Array StunServers = await StunServer.GetStunServersFromFileAsync(StunServersJson);
                 if (StunServers.Length > 0)
                 {
                     int i = 0;
-                    foreach (var _stun in StunServer.GetStunServersFromFile(StunServersJson))
+                    foreach (var _stun in await StunServer.GetStunServersFromFileAsync(StunServersJson))
                     {
                         this.dataGridView1.Rows.Insert(i, _stun.Server, _stun.Port);
                         i++;
@@ -72,7 +73,7 @@ namespace p2pconn
             {
                 // Save data from dataGridView to StunServersJson
                 this.dataGridView1.Rows.Insert(0, "stun.l.google.com", 19302);
-                SaveDataToJsoin();
+                await SaveDataToJsonAsync();
             }
         }
 
@@ -557,12 +558,12 @@ namespace p2pconn
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private async void button7_Click(object sender, EventArgs e)
         {
-            SaveDataToJsoin();
+            await SaveDataToJsonAsync();
         }
 
-        private void SaveDataToJsoin()
+        private async Task SaveDataToJsonAsync()
         {
             if (this.dataGridView1.Rows.Count == 1 && File.Exists(StunServersJson))
             {
@@ -588,7 +589,7 @@ namespace p2pconn
                 }
             }
 
-            StunServer.WriteStunServersToFile(ListJsonStunServers, StunServersJson);
+            await StunServer.WriteStunServersToFileAsync(ListJsonStunServers, StunServersJson);
            
             if (this.dataGridView1.Rows.Count > 1)
             {

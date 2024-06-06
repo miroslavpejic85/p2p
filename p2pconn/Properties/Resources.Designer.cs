@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace p2p.Properties {
+namespace p2pconn.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace p2p.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("p2p.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("p2pconn.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,31 +61,11 @@ namespace p2p.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon Icons {
-            get {
-                object obj = ResourceManager.GetObject("Icons", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon p2p {
-            get {
-                object obj = ResourceManager.GetObject("p2p", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap p2p1 {
+        internal static System.Drawing.Bitmap p2p {
             get {
-                object obj = ResourceManager.GetObject("p2p1", resourceCulture);
+                object obj = ResourceManager.GetObject("p2p", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
