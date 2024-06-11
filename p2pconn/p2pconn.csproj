@@ -106,6 +106,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Functions.cs" />
+    <Compile Include="RegistryFuncs.cs" />
     <Compile Include="StreamingDesktop\InputControl.cs" />
     <Compile Include="StreamingDesktop\pDesktop.cs">
       <SubType>Form</SubType>
